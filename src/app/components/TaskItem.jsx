@@ -6,7 +6,7 @@ const TaskItem = ({ task, onToggle, onDelete }) => {
       <span
         onClick={() => onToggle(task.id)}
         className={`cursor-pointer ${
-          task.completed ? "line-through text-gray-500" : ""   //click on the text to toggle task completion
+          task.completed ? "line-through text-gray-400" : ""
         }`}
       >
         {task.title}

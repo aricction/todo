@@ -1,5 +1,5 @@
 "use client";
-import {  createContext, useCallback, useContext, useState } from "react";
+import {  createContext, useCallback, useContext, useMemo, useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const TaskContext = createContext();
@@ -16,33 +16,33 @@ export function TaskProvider({children}) {
     },[setTasks])
 
 
-    const toggleTask = (id)=> {
+    const toggleTask = useCallback((id)=> {
                 console.log("toggle task function rendered")
 
         setTasks((prev)=> prev.map(task => task.id ===id ?
             {...task, completed: !task.completed}: task
         ))
-    }
+    }, [setTasks]);
 
-    const deleteTask = (id)=> {
+    const deleteTask = useCallback((id)=> {
                 console.log("delete task function rendered")
 
         setTasks((prev)=> prev.filter(task => task.id !== id))
-    }
+    },[setTasks])
 
-    const filterTasks = (task)=> {
+    const filterTasks = useMemo(()=> {  //memorizes the result of filter function
         if(filter === "completed"){
-            return task.filter( t=> t.completed);
+            return tasks.filter( t=> t.completed);
         
         }
         if(filter === "pending"){
-            return task.filter( t => !t.completed);
+            return tasks.filter( t => !t.completed);
         }
-        return task;
-    }
+        return tasks;
+    }, [tasks, filter]);
 
     const values = {
-        tasks: filterTasks(tasks),
+        tasks: filterTasks,
         addTask,
         toggleTask,
         deleteTask,
