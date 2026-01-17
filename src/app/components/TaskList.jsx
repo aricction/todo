@@ -1,9 +1,11 @@
 "use client";
 
+import React from "react";
 import { useTasks } from "../context/TaskContext";
 import TaskItem from "./TaskItem";
 import { useMounted } from "../hooks/useMounted";
-function TaskList() {
+
+const TaskList = React.memo(() => {
   const mounted = useMounted();
 
   const { tasks, toggleTask, deleteTask } = useTasks();
@@ -27,6 +29,8 @@ function TaskList() {
       )}
     </div>
   );
-}
+});
+
+TaskList.displayName = "TaskList";  //Makes React DevTools readable
 
 export default TaskList;

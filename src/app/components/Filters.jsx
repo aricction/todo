@@ -1,8 +1,9 @@
 "use client";
 
+import React from "react";
 import { useTasks } from "../context/TaskContext";
 
-const Filters = () => {
+const Filters = React.memo(() => {
   const { filter, setFilter } = useTasks();
 
   return (
@@ -18,6 +19,8 @@ const Filters = () => {
       </select>
     </div>
   );
-};
+});
+
+Filters.displayName = "Filters";
 
 export default Filters;

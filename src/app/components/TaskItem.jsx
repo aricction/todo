@@ -1,6 +1,7 @@
 "use client";
+import React from "react";
 
-const TaskItem = ({ task, onToggle, onDelete }) => {
+const TaskItem = React.memo(({ task, onToggle, onDelete }) => {
   return (
     <li className="flex items-center justify-between gap-3 py-3 px-4 rounded-lg   border border-gray-200  hover:bg-gray-700  transition-colors sm:w-full">
       <span
@@ -22,6 +23,8 @@ const TaskItem = ({ task, onToggle, onDelete }) => {
       </button>
     </li>
   );
-};
+});
+
+TaskItem.displayName = "TaskItem";
 
 export default TaskItem;

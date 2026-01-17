@@ -7,14 +7,13 @@
 @tailwind utilities;
 
 
-/* Optional: smooth transitions for bg/text */
-body {
-  transition: background-color 0.3s, color 0.3s;
-}
-
-html.transition-colors,
-html.transition-colors * {
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out !important;
+/* Smooth transitions for theme switching */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
 }
 
 @layer base {

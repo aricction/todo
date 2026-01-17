@@ -62,14 +62,17 @@ export function TaskProvider({ children }) {
     return tasks;
   }, [tasks, filter]);
 
-  const values = {
-    tasks: filterTasks,
-    addTask,
-    toggleTask,
-    deleteTask,
-    filter,
-    setFilter,
-  };
+  const values = useMemo(
+    () => ({
+      tasks: filterTasks,
+      addTask,
+      toggleTask,
+      deleteTask,
+      filter,
+      setFilter,
+    }),
+    [filterTasks, addTask, toggleTask, deleteTask, filter, setFilter]
+  );
 
   return <TaskContext.Provider value={values}>{children}</TaskContext.Provider>;
 }
