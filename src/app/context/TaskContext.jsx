@@ -7,6 +7,7 @@ import {
   useState,
 } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { arrayMove } from "@dnd-kit/sortable";
 
 const TaskContext = createContext();
 
@@ -49,6 +50,14 @@ export function TaskProvider({ children }) {
     },
     [setTasks]
   );
+ 
+  const reorderTasks = ( activeId , overId )=> {
+    setTasks((prev)=> {
+    const oldIndex = prev.findIndex((t) => t.id === activeId);
+    const newIndex = prev.findIndex((t) => t.id === overId);
+    return arrayMove(prev, oldIndex, newIndex)
+    });
+  };
 
   //filter
   const filterTasks = useMemo(() => {
@@ -68,6 +77,7 @@ export function TaskProvider({ children }) {
       addTask,
       toggleTask,
       deleteTask,
+      reorderTasks,
       filter,
       setFilter,
     }),

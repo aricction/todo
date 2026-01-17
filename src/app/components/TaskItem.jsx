@@ -1,9 +1,22 @@
 "use client";
 import React from "react";
-
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 const TaskItem = React.memo(({ task, onToggle, onDelete }) => {
+
+  const {setNodeRef, attributes , listeners , transform , transition } = useSortable({ id: task.id})
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  }
   return (
-    <li className="flex items-center justify-between gap-3 py-3 px-4 rounded-lg   border border-gray-200  hover:bg-gray-700  transition-colors sm:w-full">
+    <li 
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+    className="flex items-center justify-between gap-3 py-3 px-4 rounded-lg   border border-gray-200  hover:bg-gray-700  transition-colors sm:w-full">
       <span
         onClick={() => onToggle(task.id)}
         className={`cursor-pointer flex-1 ${
