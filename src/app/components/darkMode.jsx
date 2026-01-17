@@ -15,6 +15,14 @@ import {
 export function ModeToggle() {
   const { setTheme } = useTheme();
 
+  const handleThemeChange = (theme) => {
+    document.documentElement.classList.add('transition-colors');
+    setTheme(theme);
+    setTimeout(() => {
+      document.documentElement.classList.remove('transition-colors');
+    }, 300);
+  };
+
   return (
     <DropdownMenu >
       <DropdownMenuTrigger asChild>
@@ -26,13 +34,13 @@ export function ModeToggle() {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end" className="bg-white dark:bg-gray-800 ">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
+        <DropdownMenuItem onClick={() => handleThemeChange("light")}>
           Light
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
+        <DropdownMenuItem onClick={() => handleThemeChange("dark")}>
           Dark
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
+        <DropdownMenuItem onClick={() => handleThemeChange("system")}>
           System
         </DropdownMenuItem>
       </DropdownMenuContent>

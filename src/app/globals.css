@@ -6,6 +6,17 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* Optional: smooth transitions for bg/text */
+body {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+html.transition-colors,
+html.transition-colors * {
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out !important;
+}
+
 @layer base {
   :root {
     --background: oklch(1 0 0);
