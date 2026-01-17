@@ -23,7 +23,7 @@ const TaskForm = React.memo(() => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Add a task..."
-          className="w-full sm:flex-1 border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full sm:flex-1 border border-gray-300 dark:border-gray-600 rounded px-4 py-2 bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors"
         />
 
         <button
@@ -31,8 +31,8 @@ const TaskForm = React.memo(() => {
           disabled={!input.trim()}
           className="
             w-full sm:w-[110px] h-[42px]
-            bg-blue-600 text-white rounded-md
-            hover:bg-blue-700 transition
+            bg-blue-600 dark:bg-blue-500 text-white rounded-md
+            hover:bg-blue-700 dark:hover:bg-blue-600 transition
             disabled:opacity-50 disabled:cursor-not-allowed
           "
         >

@@ -12,9 +12,9 @@ function TaskList() {
   return (
     <div>
       {tasks.length === 0 ? (
-        <p>No task added</p>
+        <p className="text-gray-500 dark:text-gray-400 text-center py-8">No task added</p>
       ) : (
-        <ul>
+        <ul className="space-y-2">
           {tasks.map((task) => (
             <TaskItem
               key={task.id}
