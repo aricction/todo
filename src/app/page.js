@@ -11,9 +11,11 @@ export default function Home() {
        <div className="flex justify-end">
        <ModeToggle/>
        </div>
+       <div className="top-0">
         <Filters />
         <TaskForm />
         <TaskList />
+       </div>
       </main>
     </div>
   );
