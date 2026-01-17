@@ -17,6 +17,8 @@ const TaskItem = React.memo(({ task, onToggle, onDelete }) => {
       {...attributes}
       {...listeners}
     className="flex items-center justify-between gap-3 py-3 px-4 rounded-lg   border border-gray-200  hover:bg-gray-700  transition-colors sm:w-full">
+        <span className="text-gray-400 cursor-grab active:cursor-grabbing">⋮⋮</span>
+
       <span
         onClick={() => onToggle(task.id)}
         className={`cursor-pointer flex-1 ${
