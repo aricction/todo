@@ -4,7 +4,10 @@ import React from "react";
 import { useTasks } from "../context/TaskContext";
 import TaskItem from "./TaskItem";
 import { useMounted } from "../hooks/useMounted";
-import { DndContext , closestCenter  } from "@dnd-kit/core";
+import { DndContext , closestCenter  ,PointerSensor,
+  TouchSensor,
+  useSensor,
+  useSensors,  } from "@dnd-kit/core";
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 
 const TaskList = React.memo(() => {
@@ -17,6 +20,22 @@ const TaskList = React.memo(() => {
     if(!over || active.id === over.id ) return ;
     reorderTasks(active.id , over.id);
   }
+   //for touch devices
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    }),
+
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay:200,
+        tolerance: 5,
+      },
+    })
+  );
+
   if (!mounted) return null;
   return (
     <div>
@@ -24,7 +43,9 @@ const TaskList = React.memo(() => {
       {tasks.length === 0 ? (
         <p className="text-gray-500 dark:text-gray-400 text-center py-8">No task added</p>
       ) : (
-        <DndContext collisionDetection={closestCenter}
+        <DndContext 
+        sensors={sensors}
+        collisionDetection={closestCenter}
         onDragEnd={handleDragEnd}>
          <SortableContext
          items = {tasks.map((tasks) => tasks.id)}
