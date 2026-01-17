@@ -24,7 +24,7 @@ const TaskList = React.memo(() => {
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
-        distance: 8,
+        distance: 5,
       },
     }),
 
@@ -48,7 +48,7 @@ const TaskList = React.memo(() => {
         collisionDetection={closestCenter}
         onDragEnd={handleDragEnd}>
          <SortableContext
-         items = {tasks.map((tasks) => tasks.id)}
+         items = {tasks.map((task) => task.id)}
          strategy={verticalListSortingStrategy}>
 
         <ul className="space-y-2">
